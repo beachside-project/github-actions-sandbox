@@ -1,0 +1,26 @@
+name: Branch extraction check
+on: 
+  push:
+    # tags: [ v* ]
+  pull_request:
+    branches:
+      - main
+jobs:
+  branch_extraction_jobs:
+    runs-on: ubuntu-latest
+    name: extract branch
+    steps:
+      - name: Extract values
+        id: extract
+        shell: bash
+        run: |
+          echo "::set-output name=CURRENT_BRANCH::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=NAME::${GITHUB_REF#refs/*/}"
+          echo "::set-output name=BRANCH_ON_PR::${{github.event.pull_request.head.ref}}"
+          echo "::set-output name=TAG::${GITHUB_REF#refs/tags/}"
+      - name: Echo values
+        run: |
+          echo  "current branch is ${{ steps.extract.outputs.CURRENT_BRANCH }}"
+          echo  "NAME is ${{ steps.extract.outputs.NAME }}"
+          echo  "BRANCH_ON_PR is ${{ steps.extract.outputs.BRANCH_ON_PR }}" 
+          echo  "TAG is ${{ steps.extract.outputs.TAG }}"          
