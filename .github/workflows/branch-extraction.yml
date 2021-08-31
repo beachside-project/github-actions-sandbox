@@ -1,4 +1,4 @@
-name: Branch extraction check 1
+name: Branch extraction check 0
 on: 
   push:
     # tags: [ v* ]
