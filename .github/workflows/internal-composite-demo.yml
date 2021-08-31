@@ -7,20 +7,6 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v2
-      - name: Extract branch name
-        id: extract_branch      
-        shell: bash
-        run: |
-          echo "::set-output name=CURRENT_BRANCH::${GITHUB_REF#refs/heads/}"
-          echo "::set-output name=NAME::${GITHUB_REF#refs/*/}"
-          echo "::set-output name=TAG::${GITHUB_REF#refs/tags/}"
-          echo "::set-output name=BRANCH_ON_PR::${{github.event.pull_request.head.ref}}"
-
-      - run: |
-          echo  "current branch is ${{ steps.extract_branch.outputs.CURRENT_BRANCH }}"
-          echo  "NAME is ${{ steps.extract_branch.outputs.NAME }}"
-          echo  "TAG is ${{ steps.extract_branch.outputs.TAG }}"          
-          echo  "TAG is ${{ steps.extract_branch.outputs.BRANCH_ON_PR }}" 
       - id: hello
         uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
