@@ -1,5 +1,5 @@
 name: Call internal composite actions 1
-on: [push]
+on: [push, pull_request]
 
 jobs:
   hello_world_job:
