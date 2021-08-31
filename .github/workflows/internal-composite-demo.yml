@@ -13,10 +13,9 @@ jobs:
         run: |
           echo "::set-output name=CURRENT_BRANCH::${GITHUB_REF#refs/heads/}"
       - run: |
-          echo "CURRENT_BRANCH is $CURRENT_BRANCH"
           echo  "${{ steps.extract_branch.outputs.CURRENT_BRANCH }}"
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@main
+        uses: beachside-project/github-actions-sandbox/hello-action@${{ steps.extract_branch.outputs.CURRENT_BRANCH }}
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
