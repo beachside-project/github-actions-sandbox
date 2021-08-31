@@ -17,3 +17,9 @@ runs:
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
+    - run: |
+        echo "github.ref: ${{ github.ref }}"
+        echo "GITHUB_REF#refs/heads/: ${GITHUB_REF#refs/heads/}"
+        echo "GITHUB_REF: $GITHUB_REF"
+        
+      shell: bash
