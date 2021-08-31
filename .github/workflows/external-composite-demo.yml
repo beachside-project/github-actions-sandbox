@@ -1,4 +1,4 @@
-name: Call internal composite actions
+name: Call external composite actions
 on: [push]
 
 jobs:
@@ -8,13 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@main
+        uses: beachside-project/composite-actions/hello@v1
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/github-actions-sandbox/goobye-action@main
+        uses: beachside-project/composite-actions/goobye@v1
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
