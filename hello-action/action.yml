@@ -1,7 +1,7 @@
 name: "Hello World"
 description: "Greet someone"
 inputs:
-  who-to-greet: # id of input
+  name: # id of input
     description: "Who to greet"
     required: true
     default: "World"
@@ -12,7 +12,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo Hello ${{ inputs.name }} !!
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
