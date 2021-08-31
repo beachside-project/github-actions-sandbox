@@ -7,13 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@v1
+        uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/github-actions-sandbox/goobye-action@v1
+        uses: beachside-project/github-actions-sandbox/goobye-action@main
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
