@@ -12,7 +12,7 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@main
+        uses: beachside-project/github-actions-sandbox/hello-action@${{ steps.extract_branch.outputs.branch }}
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
