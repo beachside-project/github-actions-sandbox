@@ -14,7 +14,7 @@ jobs:
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/github-actions-sandbox/goobye-action@main
+        uses: beachside-project/github-actions-sandbox/goodbye-action@main
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
