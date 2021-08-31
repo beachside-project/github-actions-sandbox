@@ -11,9 +11,8 @@ jobs:
         id: extract_branch      
         shell: bash
         run: |
-          echo "::set-env name=NAME::${GITHUB_REF#refs/*/}"
-          echo "::set-env name=BRANCH::${GITHUB_REF#refs/heads/}"
-          echo "::set-env name=TAG::${GITHUB_REF#refs/tags/}"
+          echo "::set-output name=CURRENT_BRANCH::${GITHUB_REF#refs/heads/}"
+          echo "CURRENT_BRANCH is $CURRENT_BRANCH"
       - id: hello
         uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
