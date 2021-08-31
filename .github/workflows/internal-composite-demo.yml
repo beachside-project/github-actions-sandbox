@@ -12,10 +12,14 @@ jobs:
         shell: bash
         run: |
           echo "::set-output name=CURRENT_BRANCH::${GITHUB_REF#refs/heads/}"
+          echo "::set-output name=NAME::${GITHUB_REF#refs/*/}"
+          echo "::set-output name=TAG::${GITHUB_REF#refs/tags/}"
       - run: |
-          echo  "${{ steps.extract_branch.outputs.CURRENT_BRANCH }}"
+          echo  "current branch is ${{ steps.extract_branch.outputs.CURRENT_BRANCH }}"
+          echo  "NAME is ${{ steps.extract_branch.outputs.NAME }}"
+          echo  "TAG is ${{ steps.extract_branch.outputs.TAG }}"          
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@${{ steps.extract_branch.outputs.CURRENT_BRANCH }}
+        uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
