@@ -1,4 +1,4 @@
-name: Call internal composite actions
+name: Call internal composite actions 1
 on: [push]
 
 jobs:
