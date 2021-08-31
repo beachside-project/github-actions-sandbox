@@ -1,6 +1,9 @@
 name: Call internal composite actions
 on: [push]
 
+env:
+  CURRENT_BRANCH: ${GITHUB_REF#refs/heads/}
+
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -8,13 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@${GITHUB_REF#refs/heads/}
+        uses: beachside-project/github-actions-sandbox/hello-action@${{env.CURRENT_BRANCH}}
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/github-actions-sandbox/goodbye-action@${GITHUB_REF#refs/heads/}
+        uses: beachside-project/github-actions-sandbox/goodbye-action@${{env.CURRENT_BRANCH}}
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
