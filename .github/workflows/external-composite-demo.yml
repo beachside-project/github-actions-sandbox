@@ -8,13 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: hello
-        uses: beachside-project/composite-actions/hello@v1.0.0
+        uses: beachside-project/composite-actions/hello@v1
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/composite-actions/goodbye@v1.0.0
+        uses: beachside-project/composite-actions/goodbye@v1
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
