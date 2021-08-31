@@ -9,14 +9,18 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v2
+      - name: Extract branch name
+        id: extract_branch      
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@${{ env.CURRENT_BRANCH }}
+        uses: beachside-project/github-actions-sandbox/hello-action${{ steps.extract_branch.outputs.branch }}
         with:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - id: bye
-        uses: beachside-project/github-actions-sandbox/goodbye-action@${{env.CURRENT_BRANCH}}
+        uses: beachside-project/github-actions-sandbox/goodbye-action${{ steps.extract_branch.outputs.branch }}
         with:
           name: 'Atsushi'
       - run: echo goobye random-number ${{ steps.bye.outputs.random-number }}
