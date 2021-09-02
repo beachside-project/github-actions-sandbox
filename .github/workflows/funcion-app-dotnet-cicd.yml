@@ -33,7 +33,7 @@ jobs:
       - name: dotnet Publish geek-web
         run: |
           pushd './${{ env.FUNCTIONAPP_PACKAGE_PATH }}'
-          dotnet publish src/Sflow.Geek.Web/Sflow.Geek.Web.csproj --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
+          dotnet publish --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
           popd
       #Publish build artifacts to GitHub
       - name: upload geek-web artifacts
