@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '.github/workflows/funcion-app-dotnet-cicd.yml'
+      - '.github/workflows/funcion-app-dotnet-*.yml'
       - 'function-app-sample/**'
       
 defaults:
