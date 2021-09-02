@@ -30,8 +30,9 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
       # Creat build artifacts
-      - name: dotnet Publish geek-web
+      - name: dotnet Publish
         run: |
+          ls
           pushd './${{ env.FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet publish --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
           popd
