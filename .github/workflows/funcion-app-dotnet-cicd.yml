@@ -38,13 +38,13 @@ jobs:
       - name: "Zip artifacts"
         run: |
           pushd ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
-          zip -r -m ${{ env.AZURE_FUNCTIONAPP_NAME }}.zip .
+          zip -r ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip .
           popd
       - name: upload geek-web artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          path: ${{ github.workspace }}/outputs/${{ env.FUNCTIONAPP_NAME }}/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
+          path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
 
   # Deploy to staging
   deploy-geek-web:
