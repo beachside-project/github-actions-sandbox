@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/funcion-app-dotnet-cicd.yml'
+      - 'function-app-sample/**'
       
 defaults:
   run:
