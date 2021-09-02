@@ -1,0 +1,67 @@
+name: Azure Functions for dotnet CI/CD .
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/funcion-app-dotnet-cicd.yml'
+      
+defaults:
+  run:
+    shell: bash
+     
+env:
+  DOTNET_VERSION: '3.1.x'
+  BUILD_CONFIGURATION: 'Release'
+  FUNCTIONAPP_PACKAGE_PATH: 'function-app-sample/FunctionApp1'
+  AZURE_FUNCTIONAPP_NAME: 'func-github-action-sandbox-dotnet'
+  
+jobs:
+  build:
+    name: Build and upload artifacts
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: function-app-sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
+      # Creat build artifacts
+      - name: dotnet Publish geek-web
+        run: |
+          pushd './${{ env.FUNCTIONAPP_PACKAGE_PATH }}'
+          dotnet publish src/Sflow.Geek.Web/Sflow.Geek.Web.csproj --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
+          popd
+      #Publish build artifacts to GitHub
+      - name: upload geek-web artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          path: ${{ github.workspace }}/outputs/${{ env.FUNCTIONAPP_NAME }
+
+  # Deploy to staging
+  deploy-geek-web:
+    name: Deploy function app
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/download-artifact@v2
+        id download
+        with:
+          name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+      - name: Echo download path
+        run: |
+        echo download path is ${{steps.download.outputs.download-path}}
+        ls
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_GITHUB_ACTION_SANDBOX_DOTNET }}
+
+
