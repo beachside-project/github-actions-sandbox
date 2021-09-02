@@ -5,7 +5,6 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/funcion-app-dotnet-cicd.yml'
-      - 'function-app-sample/**'
       
 defaults:
   run:
@@ -35,20 +34,15 @@ jobs:
           dotnet publish --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
           popd
       #Publish build artifacts to GitHub
-      - name: "Zip artifacts"
-        run: |
-          pushd ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
-          zip -r ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip .
-          popd
-      - name: upload geek-web artifacts
+      - name: upload function app artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          path: ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
+          path: ${{ github.workspace }}/outputs/${{ env.FUNCTIONAPP_NAME }}
 
   # Deploy to staging
-  deploy-geek-web:
-    name: Deploy function app
+  deploy-function1:
+    name: Deploy function-app-sample
     runs-on: ubuntu-latest
     needs: [build]
     steps:
@@ -56,16 +50,14 @@ jobs:
         id: download
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-      - name: Echo download path
-        run: |
-          echo download path is ${{steps.download.outputs.download-path}}
-          ls
+     # - name: Echo download path for debug
+     #   run: |
+     #     echo download path is ${{steps.download.outputs.download-path}}
+     #     ls
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          package: ${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
+          package: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_GITHUB_ACTION_SANDBOX_DOTNET }}
-
-
