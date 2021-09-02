@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          path: ${{ github.workspace }}/outputs/${{ env.FUNCTIONAPP_NAME }
+          path: ${{ github.workspace }}/outputs/${{ env.FUNCTIONAPP_NAME }}
 
   # Deploy to staging
   deploy-geek-web:
