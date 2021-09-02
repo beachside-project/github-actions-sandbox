@@ -49,13 +49,13 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/download-artifact@v2
-        id download
+        id: download
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
       - name: Echo download path
         run: |
-        echo download path is ${{steps.download.outputs.download-path}}
-        ls
+          echo download path is ${{steps.download.outputs.download-path}}
+          ls
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
