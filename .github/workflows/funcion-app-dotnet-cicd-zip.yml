@@ -1,4 +1,4 @@
-name: Azure Functions for dotnet with CI/CD .
+name: ZIP を artifacts へ upload する version
 
 on:
   push:
