@@ -28,5 +28,5 @@ runs:
       id: fa
       with:
         app-name: ${{ inputs.azureFunctionAppName }}
-        package: ${{ inputs.azureFunctionAppName }}
+        package: ${{ inputs.azureFunctionAppName }}.zip
         slot-name: ${{ inputs.slot-name }}
