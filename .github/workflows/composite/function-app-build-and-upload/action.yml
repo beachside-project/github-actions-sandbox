@@ -28,4 +28,5 @@ runs:
       with:
         name: ${{ inputs.azureFunctionAppName }}
         path: ${{ github.workspace }}/outputs/${{ inputs.azureFunctionAppName }}
+        if-no-files-found: error
 
