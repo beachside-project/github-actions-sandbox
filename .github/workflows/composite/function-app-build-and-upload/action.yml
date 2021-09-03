@@ -1,0 +1,31 @@
+name: Function App Build and Upload artifact for dotnet
+description: Run Build and "actions/upload-artifact" for Azure function app
+
+inputs:
+  azureFunctionAppName:
+    description: 
+    required: true
+  functionAppPackagePath:
+    description: 
+    required: true
+  buildConfiguration:
+    description: 
+    required: true
+    default: Release
+    
+runs:
+  using: "composite"
+  steps:
+    # Creat build artifact
+    - name: dotnet Publish
+      run: |
+        pushd './${{ inputs.functionAppPackagePath }}'
+        dotnet publish --configuration ${{ inputs.buildConfiguration }} --output ${{ github.workspace }}/outputs/${{ inputs.azureFunctionAppName }}
+        popd
+    #Publish build artifacts to GitHub
+    - name: upload function app artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.azureFunctionAppName }}
+        path: ${{ github.workspace }}/outputs/${{ inputs.azureFunctionAppName }}
+
