@@ -13,12 +13,11 @@ inputs:
     required: true
     default: Release
 
-defaults:
-  run:
-    shell: bash    
-
 runs:
   using: "composite"
+  defaults:
+    run:
+      shell: bash
   steps:
     # Creat build artifact
     - name: dotnet Publish
