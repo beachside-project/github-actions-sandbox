@@ -18,11 +18,11 @@ runs:
   steps:
     # Creat build artifact
     - name: dotnet Publish
-      shell: bash
       run: |
         pushd './${{ inputs.functionAppPackagePath }}'
         dotnet publish --configuration ${{ inputs.buildConfiguration }} --output ${{ github.workspace }}/outputs/${{ inputs.azureFunctionAppName }}
         popd
+      shell: bash
     #Publish build artifacts to GitHub
     - name: upload function app artifacts
       uses: actions/upload-artifact@v2
