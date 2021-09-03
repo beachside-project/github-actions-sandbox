@@ -23,6 +23,7 @@ runs:
     - uses: actions/download-artifact@v2
       with:
         name: ${{ inputs.azureFunctionAppName }}
+        path: output
     - name: Echo download path for debug
       shell: bash
       run: |
@@ -33,5 +34,5 @@ runs:
       id: fa
       with:
         app-name: ${{ inputs.azureFunctionAppName }}
-        package: ${{ inputs.azureFunctionAppName }}
+        package: output
         slot-name: ${{ inputs.slot-name }}
