@@ -23,11 +23,11 @@ runs:
     - uses: actions/download-artifact@v2
       with:
         name: ${{ inputs.azureFunctionAppName }}
-     - name: Echo download path for debug
-       shell: bash
-       run: |
-          echo download path is ${{steps.download.outputs.download-path}}
-          ls
+    - name: Echo download path for debug
+      shell: bash
+      run: |
+        echo download path is ${{steps.download.outputs.download-path}}
+        ls
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
