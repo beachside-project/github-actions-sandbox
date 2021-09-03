@@ -12,7 +12,11 @@ inputs:
     description: 
     required: true
     default: Release
-    
+
+defaults:
+  run:
+    shell: bash    
+
 runs:
   using: "composite"
   steps:
