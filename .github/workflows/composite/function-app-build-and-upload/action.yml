@@ -15,12 +15,10 @@ inputs:
 
 runs:
   using: "composite"
-  defaults:
-    run:
-      shell: bash
   steps:
     # Creat build artifact
     - name: dotnet Publish
+      shell: bash
       run: |
         pushd './${{ inputs.functionAppPackagePath }}'
         dotnet publish --configuration ${{ inputs.buildConfiguration }} --output ${{ github.workspace }}/outputs/${{ inputs.azureFunctionAppName }}
