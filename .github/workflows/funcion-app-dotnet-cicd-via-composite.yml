@@ -28,7 +28,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
       # Creat build artifacts
       - name: Build and upload artifact
-        uses: beachside-project/.github/workflows/composite/function-app-build-and-upload@main
+        uses: beachside-project/github-actions-sandbox/.github/workflows/composite/function-app-build-and-upload@main
         with:
           azureFunctionAppName: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           functionAppPackagePath: ${{ env.FUNCTIONAPP_PACKAGE_PATH }}
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: beachside-project/.github/workflows/composite/function-app-download-and-deploy@main
+      - uses: beachside-project/github-actions-sandbox/.github/workflows/composite/function-app-download-and-deploy@main
         with:
           azureLoginSecrets: ${{ secrets.AZURE_RBAC_RG_FUNCTION_V3_DOTNET_CICD }}
           azureFunctionAppName: ${{ env.AZURE_FUNCTIONAPP_NAME }}
