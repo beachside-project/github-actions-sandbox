@@ -1,4 +1,4 @@
-name: Azure Functions for dotnet CI/CD via composite
+name: Azure Functions for dotnet CI/CD via composite1
 
 on:
   push:
