@@ -7,7 +7,7 @@ on:
       - '.github/workflows/webapp-deploy-*.yml
 
 env:
-  AZURE_WEBAPP_NAME: app-webapp-sandbox-dotnet-beachside
+  AZURE_WEBAPP_NAME: 'app-webapp-sandbox-dotnet-beachside'
   AZURE_WEBAPP_PACKAGE_PATH: 'web-app-sample/WebApplication1'
   DOTNET_VERSION: '3.1.x'
   AZURE_WEBAPP_SLOT_NAME: 'Staging'
