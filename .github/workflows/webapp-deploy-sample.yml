@@ -39,10 +39,16 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS_RG_WEBAPPS_SANDBOX }}
-      - name: 'Run Azure webapp deploy action using publish profile credentials'
-        uses: azure/webapps-deploy@v2
-        with: 
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        #  publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_APP_WEBAPP_SANDBOX_DOTNET_BEACHSIDE  }}
-          package: '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}'
-          slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+      # - name: 'Run Azure webapp deploy action'
+      #   uses: azure/webapps-deploy@v2
+      #   with: 
+      #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+      #   #  publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_APP_WEBAPP_SANDBOX_DOTNET_BEACHSIDE  }}
+      #     package: '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}'
+      #     slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
+      - name: 'Run Azure webapp deploy with az CLI'
+        run: |
+          pushd ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
+          zip -r ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip .
+          popd
+          az webapp deployment source config-zip -g rg-webapps-sandbox -n ${{ env.AZURE_WEBAPP_NAME }} --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --src ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
