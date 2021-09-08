@@ -48,7 +48,7 @@ jobs:
       #     slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
       - name: 'Run Azure webapp deploy with az CLI'
         run: |
-          pushd ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}
-          zip -r ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip .
+          pushd ${{ github.workspace }}/outputs/${{ env.AZURE_WEBAPP_NAME }}
+          zip -r ${{ github.workspace }}/outputs/${{ env.AZURE_WEBAPP_NAME }}.zip .
           popd
-          az webapp deployment source config-zip -g rg-webapps-sandbox -n ${{ env.AZURE_WEBAPP_NAME }} --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --src ${{ github.workspace }}/outputs/${{ env.AZURE_FUNCTIONAPP_NAME }}.zip
+          az webapp deployment source config-zip -g rg-webapps-sandbox -n ${{ env.AZURE_WEBAPP_NAME }} --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --src ${{ github.workspace }}/outputs/${{ env.AZURE_WEBAPP_NAME }}.zip
