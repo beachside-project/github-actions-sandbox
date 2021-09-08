@@ -51,4 +51,4 @@ jobs:
           pushd ${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}
           zip -r ${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}.zip .
           popd
-          az webapp deployment source config-zip -g rg-webapps-sandbox -n ${{ env.AZURE_WEBAPP_NAME }} --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --src ${{ github.workspace }}/outputs/${{ env.AZURE_WEBAPP_NAME }}.zip
+          az webapp deployment source config-zip -g rg-webapps-sandbox -n ${{ env.AZURE_WEBAPP_NAME }} --slot ${{ env.AZURE_WEBAPP_SLOT_NAME }} --src ${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}.zip
