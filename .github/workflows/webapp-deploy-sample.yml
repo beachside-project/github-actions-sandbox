@@ -26,7 +26,7 @@ jobs:
         run: |
           pushd ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
           dotnet build --configuration Release --runtime win-x86
-          dotnet publish -c Release --no-build --runtime win-x86 -o '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}' 
+          dotnet publish -c Release --no-build --runtime win-x86 --self-contained false -o '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}' 
           popd
       - name: debug
         run: |
