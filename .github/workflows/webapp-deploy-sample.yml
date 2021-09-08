@@ -7,7 +7,8 @@ on:
       - '.github/workflows/webapp-deploy-*.yml'
 
 env:
-  AZURE_WEBAPP_NAME: 'app-webapp-sandbox-dotnet-beachside'
+  # AZURE_WEBAPP_NAME: 'app-webapp-sandbox-dotnet-beachside'
+  AZURE_WEBAPP_NAME: 'app-webapp-sandbox-dotnet-beachside-linux'
   AZURE_WEBAPP_PACKAGE_PATH: 'web-app-sample/WebApplication1'
   DOTNET_VERSION: '3.1.x'
   AZURE_WEBAPP_SLOT_NAME: 'STAGING'
@@ -25,8 +26,8 @@ jobs:
       - name: dotnet build and publish
         run: |
           pushd ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-          dotnet build --configuration Release --runtime win-x86
-          dotnet publish -c Release --no-build --runtime win-x86 -o '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}' 
+          dotnet build --configuration Release
+          dotnet publish -c Release --no-build -o '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}' 
           popd
       - name: debug
         run: |
