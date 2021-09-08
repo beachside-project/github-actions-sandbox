@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - '.github/workflows/webapp-deploy-*.yml
+      - '.github/workflows/webapp-deploy-*.yml'
 
 env:
   AZURE_WEBAPP_NAME: 'app-webapp-sandbox-dotnet-beachside'
