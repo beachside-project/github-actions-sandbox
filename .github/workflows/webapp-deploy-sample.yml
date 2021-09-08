@@ -35,10 +35,14 @@ jobs:
           echo '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}'
           ls ${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}
       # Deploy to Azure Web apps
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_RG_WEBAPPS_SANDBOX }}
       - name: 'Run Azure webapp deploy action using publish profile credentials'
         uses: azure/webapps-deploy@v2
         with: 
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_APP_WEBAPP_SANDBOX_DOTNET_BEACHSIDE  }}
+        #  publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_APP_WEBAPP_SANDBOX_DOTNET_BEACHSIDE  }}
           package: '${{ github.workspace }}/output/${{ env.AZURE_WEBAPP_NAME }}'
           slot-name: ${{ env.AZURE_WEBAPP_SLOT_NAME }}
