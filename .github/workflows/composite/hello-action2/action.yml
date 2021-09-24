@@ -1,10 +1,13 @@
 name: "Hello Action 2"
 description: "Greet someone"
 inputs:
-  name: # id of input
+  name:
     description: "Who to greet"
     required: true
     default: "World"
+  numOctocats:
+    required: true
+
 outputs:
   random-number:
     description: "Random number"
@@ -12,7 +15,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.name }} v1.1 !!
+    - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
