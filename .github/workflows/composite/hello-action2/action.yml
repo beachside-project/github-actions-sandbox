@@ -6,6 +6,7 @@ inputs:
     required: true
     default: "World"
   numOctocats:
+    description: "Octocats count"
     required: true
 
 outputs:
@@ -14,7 +15,7 @@ outputs:
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
-  steps: num-octocats
+  steps:
     - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
     - run: echo num-octocats: {{ inputs.numOctocats }} !
