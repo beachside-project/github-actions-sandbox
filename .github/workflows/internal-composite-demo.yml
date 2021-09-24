@@ -13,7 +13,7 @@ jobs:
       #    name: 'AY'
       # repo 内の composite action を version 指定して呼び出いなら以下のようにする (使うことはなさそうだけど
       - id: hello
-        uses: beachside-project/github-actions-sandbox/hello-action@main
+        uses: beachside-project/github-actions-sandbox/.github/workflows/composite/hello-action2@main
         with:
           name: 'YOKOHAMA'
           numOctocats: 1
