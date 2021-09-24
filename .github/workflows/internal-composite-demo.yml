@@ -6,24 +6,26 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
-        shell: bash
-      - name: hello 2
-        uses: ./.github/workflows/composite/hello-action2
-        with:
-          name: 'AY'
-          numOctocats: 3
       # repo 内の composite action を呼ぶ際は version 指定できない    
       # - name: hello 2 @main
       #  uses: ./.github/workflows/composite/hello-action2@main
       #  with:
       #    name: 'AY'
       # repo 内の composite action を version 指定して呼び出いなら以下のようにする (使うことはなさそうだけど
-      - uses: actions/checkout@v2
       - id: hello
         uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
           name: 'YOKOHAMA'
+          
+      - uses: actions/checkout@v2    
+      - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
+        shell: bash
+      # 相対パスで composite action を呼ぶなら事前に actions/checkout が必要  
+      - name: hello 2
+        uses: ./.github/workflows/composite/hello-action2
+        with:
+          name: 'AY'
+          numOctocats: 3
       - id: bye
         uses: beachside-project/github-actions-sandbox/goodbye-action@main
         with:
