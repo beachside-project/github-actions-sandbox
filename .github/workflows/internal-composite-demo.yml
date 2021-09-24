@@ -16,7 +16,7 @@ jobs:
         uses: beachside-project/github-actions-sandbox/hello-action@main
         with:
           name: 'YOKOHAMA'
-          
+          numOctocats: 1
       - uses: actions/checkout@v2    
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
