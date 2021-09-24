@@ -18,6 +18,8 @@ runs:
   steps:
     - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
-    - id: random-number-generator
+    - run: echo num-octocats is ${{ inputs.numOctocats }} !
+      shell: bash  
+  - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
