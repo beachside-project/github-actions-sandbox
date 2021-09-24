@@ -15,9 +15,6 @@ outputs:
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
-  defaults:
-    run:
-      shell: bash
   steps:
     - run: echo Hello ${{ inputs.name }} v1.0 !!
     - id: random-number-generator
