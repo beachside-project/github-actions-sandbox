@@ -13,6 +13,10 @@ jobs:
           name: 'YOKOHAMA'
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
+      - name: hello 2
+        uses: ./.github/workflows/composite/hello-action2
+        with:
+          name 'AY'
       - id: bye
         uses: beachside-project/github-actions-sandbox/goodbye-action@main
         with:
