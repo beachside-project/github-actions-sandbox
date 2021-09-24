@@ -18,7 +18,7 @@ runs:
   steps:
     - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
-    - run: 'echo num-octocats is ${{ github.action_path }} !'
+    - run: echo 'num-octocats is ${{ github.action_path }} !'
       shell: bash  
   - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
