@@ -18,7 +18,7 @@ runs:
   steps:
     - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
-    - run: echo num-octocats: {{ inputs.numOctocats }} !
+    - run: echo num-octocats: ${{ inputs.numOctocats }} !
       shell: bash
     - run: echo github.action_path: ${{ github.action_path }}
     - id: random-number-generator
