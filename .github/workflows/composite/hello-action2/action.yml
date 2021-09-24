@@ -14,8 +14,10 @@ outputs:
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
-  steps:
-    - run: echo Hello ${{ inputs.name }} v1.0 !!
+  steps: num-octocats
+    - run: |
+        echo Hello ${{ inputs.name }} v1.0 !!
+        echo num-octocats: {{ inputs.numOctocats }} !
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
