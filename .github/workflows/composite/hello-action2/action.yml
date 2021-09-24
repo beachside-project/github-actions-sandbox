@@ -15,10 +15,11 @@ outputs:
 runs:
   using: "composite"
   steps: num-octocats
-    - run: |
-        echo Hello ${{ inputs.name }} v1.0 !!
-        echo num-octocats: {{ inputs.numOctocats }} !
+    - run: echo Hello ${{ inputs.name }} v1.0 !!
       shell: bash
+    - run: echo num-octocats: {{ inputs.numOctocats }} !
+      shell: bash
+    - run: echo github.action_path: ${{ github.action_path }}
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
