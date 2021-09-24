@@ -16,7 +16,7 @@ jobs:
       - name: hello 2
         uses: ./.github/workflows/composite/hello-action2
         with:
-          name 'AY'
+          name: 'AY'
       - id: bye
         uses: beachside-project/github-actions-sandbox/goodbye-action@main
         with:
