@@ -5,7 +5,7 @@ inputs:
     description: "Who to greet"
     required: true
     default: "World"
-  numOctocats:
+  num-octocats:
     description: "Octocats count"
     required: true
 
@@ -18,7 +18,7 @@ runs:
   steps:
     - run: echo Hello ${{ inputs.name }} v1.1 !!
       shell: bash
-    - run: echo num-octocats is ${{ inputs.numOctocats }} !
+    - run: echo num-octocats is ${{ inputs.num-octocats }} !
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
