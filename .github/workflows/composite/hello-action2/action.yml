@@ -1,0 +1,19 @@
+name: "Hello Action 2"
+description: "Greet someone"
+inputs:
+  name: # id of input
+    description: "Who to greet"
+    required: true
+    default: "World"
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps:
+    - run: echo Hello ${{ inputs.name }} v1.1 !!
+      shell: bash
+    - id: random-number-generator
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      shell: bash
