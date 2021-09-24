@@ -9,9 +9,10 @@ jobs:
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       - name: hello 2
-        uses: .github/workflows/composite/hello-action2
+        uses: ./.github/workflows/composite/hello-action2
         with:
           name: 'AY'
+          numOctocats: 3
       # repo 内の composite action を呼ぶ際は version 指定できない    
       # - name: hello 2 @main
       #  uses: ./.github/workflows/composite/hello-action2@main
