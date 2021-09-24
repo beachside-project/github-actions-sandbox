@@ -16,7 +16,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.name }} v1.0 !!
+    - run: echo Hello ${{ inputs.name }} v1.1 !!
       shell: bash
     - run: echo num-octocats is ${{ inputs.numOctocats }} !
       shell: bash
