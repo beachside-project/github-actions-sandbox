@@ -17,7 +17,7 @@ jobs:
         with:
           name: 'YOKOHAMA'
           numOctocats: 1
-     # - uses: actions/checkout@v2    
+      - uses: actions/checkout@v2    
       - run: echo hello action random-number is ${{ steps.hello.outputs.random-number }}
         shell: bash
       # 相対パスで composite action を呼ぶなら事前に actions/checkout が必要  
