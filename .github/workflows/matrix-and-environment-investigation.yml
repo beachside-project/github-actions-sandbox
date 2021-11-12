@@ -38,8 +38,10 @@ jobs:
           # - 'zenadvisor-geek-backend'
           #- 'zenadvisor-customer-backend'
     steps:
-    - name: deploy-job-${{ matrix.webAppName }}
-      run: echo ${{ matrix.include }}
+    - name: deploy-job
+      run: |
+        echo ${{ matrix.include.project }}
+        echo ${{ matrix.inculde.config }}
 
   rease-matrix:
     name: Release
