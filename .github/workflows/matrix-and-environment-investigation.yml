@@ -40,8 +40,9 @@ jobs:
     steps:
     - name: deploy-job
       run: |
-        echo ${{ matrix.include.project }}
-        echo ${{ matrix.inculde.config }}
+       # echo ${{ matrix.include.project }} 認識しない
+       # echo ${{ matrix.inculde.config }}  認識しない
+       echo ${{fromJson(matrix.inculde)}}
 
   rease-matrix:
     name: Release
