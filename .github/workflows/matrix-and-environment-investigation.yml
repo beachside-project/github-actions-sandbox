@@ -42,7 +42,7 @@ jobs:
 
   rease-matrix:
     name: Release
-    needs: deploy-job-${{ matrix.webAppName }}
+    needs: deploy-matrix
     runs-on: ubuntu-latest
     environment:
       name: prod
