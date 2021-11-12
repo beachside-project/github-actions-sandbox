@@ -37,8 +37,24 @@ jobs:
           - 'zenadvisor-geek-backend'
           - 'zenadvisor-customer-backend'
     steps:
-      - name: echo-${{ matrix.webAppName }}
-        run: echo ${{ matrix.webAppName }}  
+      - name: deploy-job-${{ matrix.webAppName }}
+        run: echo ${{ matrix.webAppName }}
 
+  rease-matrix:
+    name: Release
+    needs: deploy-job-${{ matrix.webAppName }}
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    strategy:
+      matrix:
+        webAppName:
+          # - ${{ env.GEEK_WEBAPP_NAME }}
+          # - ${{ env.CUSTOMER_WEBAPP_NAME }}
+          - 'zenadvisor-geek-backend'
+          - 'zenadvisor-customer-backend'
+    steps:
+      - name: echo ${{ matrix.webAppName }}
+        run: echo ${{ matrix.webAppName }}
     
   
