@@ -31,19 +31,20 @@ jobs:
     environment:
       name: staging
     strategy:
-      matrix: ${{fromJson(needs.build_test.outputs.matrix)}}
-      #  webAppName:
+      # matrix: ${{fromJson(needs.build_test.outputs.matrix)}}
+      matrix: 
+        webAppName: ${{ fromJson(["coding-standard", "phpstan-rules"]) }}
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
           # - 'zenadvisor-geek-backend'
-          #- 'zenadvisor-customer-backend'
+          # - 'zenadvisor-customer-backend'
     steps:
     - name: deploy-job
       run: |
        # echo ${{ matrix.include.project }} 認識しない
        # echo ${{ matrix.inculde.config }}  認識しない
-       echo ${{fromJson(matrix.inculde)}}
-
+       # echo ${{fromJson(matrix.inculde)}} error
+       
   rease-matrix:
     name: Release
     needs: deploy-matrix
