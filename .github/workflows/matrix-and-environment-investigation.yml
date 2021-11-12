@@ -31,7 +31,7 @@ jobs:
       name: staging
     strategy:
       matrix:
-        webAppName: [ '${{ env.GEEK_WEBAPP_NAME }}', '${{ env.CUSTOMER_WEBAPP_NAME }}' ]
+        webAppName: ${{ fromJson(["coding-standard", "phpstan-rules"]) }}
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
           # - 'zenadvisor-geek-backend'
@@ -48,7 +48,7 @@ jobs:
       name: prod
     strategy:
       matrix:
-        webAppName:
+        webAppName: 
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
           - 'zenadvisor-geek-backend'
