@@ -19,21 +19,10 @@ jobs:
     name: Build, Test and upload artifacts
     runs-on: ubuntu-latest
     steps:
-      - run: echoo 'Hello build_test job'
+      - run: |
+          echo 'Hello build_test job'
+          echo 'Geek Web App name: ${{ env.GEEK_WEBAPP_NAME }}'
   
-  deploy-matrix:
-    name: Deploy
-    needs: build_test
-    runs-on: ubuntu-latest
-    environment:
-      name: staging
-    strategy:
-      matrix:
-        webAppName:
-          - ${{ env.GEEK_WEBAPP_NAME }}
-          - ${{ env.CUSTOMER_WEBAPP_NAME }}
-    steps:
-      - name: echo-${{ matrix.webAppName }}
-        run: echo ${{ matrix.webAppName }}
+
     
   
