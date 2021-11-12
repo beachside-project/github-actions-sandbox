@@ -32,8 +32,10 @@ jobs:
     strategy:
       matrix:
         webAppName:
-          - ${{ env.GEEK_WEBAPP_NAME }}
-          - ${{ env.CUSTOMER_WEBAPP_NAME }}
+          # - ${{ env.GEEK_WEBAPP_NAME }}
+          # - ${{ env.CUSTOMER_WEBAPP_NAME }}
+          - 'zenadvisor-geek-backend'
+          - 'zenadvisor-customer-backend'
     steps:
       - name: echo-${{ matrix.webAppName }}
         run: echo ${{ matrix.webAppName }}  
