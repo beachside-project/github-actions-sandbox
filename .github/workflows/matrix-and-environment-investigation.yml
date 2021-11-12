@@ -18,10 +18,11 @@ jobs:
   build_test:
     name: Build, Test and upload artifacts
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - run: |
-          echo 'Hello build_test job'
-          echo 'Geek Web App name: ${{ env.GEEK_WEBAPP_NAME }}'
+    - id: set-matrix
+      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
           
   deploy-matrix:
     name: Deploy
@@ -30,15 +31,15 @@ jobs:
     environment:
       name: staging
     strategy:
-      matrix:
-        webAppName: ${{ fromJson(["coding-standard", "phpstan-rules"]) }}
+      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+      #  webAppName:
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
           # - 'zenadvisor-geek-backend'
           #- 'zenadvisor-customer-backend'
     steps:
-      - name: deploy-job-${{ matrix.webAppName }}
-        run: echo ${{ matrix.webAppName }}
+    - name: deploy-job-${{ matrix.webAppName }}
+      run: echo ${{ matrix.include }}
 
   rease-matrix:
     name: Release
@@ -51,10 +52,10 @@ jobs:
         webAppName: 
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
-          - 'zenadvisor-geek-backend'
-          - 'zenadvisor-customer-backend'
+        - 'zenadvisor-geek-backend'
+        - 'zenadvisor-customer-backend'
     steps:
-      - name: echo ${{ matrix.webAppName }}
-        run: echo ${{ matrix.webAppName }}
+    - name: echo ${{ matrix.webAppName }}
+      run: echo ${{ matrix.webAppName }}
     
   
