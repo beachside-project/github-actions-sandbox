@@ -31,11 +31,11 @@ jobs:
       name: staging
     strategy:
       matrix:
-        webAppName:
+        webAppName: [ '${{ env.GEEK_WEBAPP_NAME }}', '${{ env.CUSTOMER_WEBAPP_NAME }}' ]
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
-          - 'zenadvisor-geek-backend'
-          - 'zenadvisor-customer-backend'
+          # - 'zenadvisor-geek-backend'
+          #- 'zenadvisor-customer-backend'
     steps:
       - name: deploy-job-${{ matrix.webAppName }}
         run: echo ${{ matrix.webAppName }}
