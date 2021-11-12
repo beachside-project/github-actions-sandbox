@@ -31,7 +31,7 @@ jobs:
     environment:
       name: staging
     strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+      matrix: ${{fromJson(needs.build_test.outputs.matrix)}}
       #  webAppName:
           # - ${{ env.GEEK_WEBAPP_NAME }}
           # - ${{ env.CUSTOMER_WEBAPP_NAME }}
