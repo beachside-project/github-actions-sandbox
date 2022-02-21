@@ -12,10 +12,11 @@ on:
         - debug
 
 jobs:
-  runs-on: ubuntu-latest
+  investigation:
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: install dotnet-format
-      run: dotnet tool install -g dotnet-format
-    - name: echo dotnet format version  
-      run: dotnet-format --version
+    steps:
+      - name: install dotnet-format
+        run: dotnet tool install -g dotnet-format
+      - name: echo dotnet format version  
+        run: dotnet-format --version
