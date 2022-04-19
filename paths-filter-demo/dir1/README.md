@@ -1,2 +1,2 @@
 dir1 readme  
-LLL
+LLLLLL
