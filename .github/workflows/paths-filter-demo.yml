@@ -1,1 +1,13 @@
-
+name: Paths filter demo
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'dir1/**'
+      - README.me
+jobs:
+  hello_job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello
