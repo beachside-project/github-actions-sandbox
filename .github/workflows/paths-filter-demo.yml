@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - '!paths-filter-demo/dir1/README.md'
-      - 'paths-filter-demo/dir1/**'
+  #    - 'paths-filter-demo/dir1/**'
   #    - '!README.md'
 jobs:
   hello_job:
