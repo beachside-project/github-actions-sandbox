@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - 'dir1/**'
-      - README.me
+      - ./README.me
 jobs:
   hello_job:
     runs-on: ubuntu-latest
