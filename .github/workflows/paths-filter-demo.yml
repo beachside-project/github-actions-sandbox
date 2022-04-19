@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - 'dir1/**'
+      - 'paths-filter-demo/dir1/**'
       - '!README.md'
 jobs:
   hello_job:
