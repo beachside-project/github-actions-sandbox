@@ -1,0 +1,65 @@
+name: 'matrix and environment investigation'
+
+on:
+  push:
+    branches: [main]
+env:
+  DOTNET_VERSION: '3.1.x'
+  BUILD_CONFIGURATION: 'Release'
+  AZURE_RESOURCE_GROUP: 'zenadvisor-prod-RG'
+  # Geek
+  GEEK_PROJECT_PATH: 'backend/src/Sflow.Geek.Web'
+  GEEK_WEBAPP_NAME: 'zenadvisor-geek-backend'
+  # Customer
+  CUSTOMER_PROJECT_PATH: 'backend/src/Sflow.Customer.Web'
+  CUSTOMER_WEBAPP_NAME: 'zenadvisor-customer-backend'
+  
+jobs:
+  build_test:
+    name: Build, Test and upload artifacts
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+    - id: set-matrix
+      run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+          
+  deploy-matrix:
+    name: Deploy
+    needs: build_test
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    strategy:
+      # matrix: ${{fromJson(needs.build_test.outputs.matrix)}}
+      matrix: 
+        webAppName: ${{ fromJson(["coding-standard", "phpstan-rules"]) }}
+          # - ${{ env.GEEK_WEBAPP_NAME }}
+          # - ${{ env.CUSTOMER_WEBAPP_NAME }}
+          # - 'zenadvisor-geek-backend'
+          # - 'zenadvisor-customer-backend'
+    steps:
+    - name: deploy-job
+      run: |
+       # echo ${{ matrix.include.project }} 認識しない
+       # echo ${{ matrix.inculde.config }}  認識しない
+       # echo ${{fromJson(matrix.inculde)}} error
+       
+  rease-matrix:
+    name: Release
+    needs: deploy-matrix
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    strategy:
+      matrix:
+        webAppName: 
+          # - ${{ env.GEEK_WEBAPP_NAME }}
+          # - ${{ env.CUSTOMER_WEBAPP_NAME }}
+        - 'zenadvisor-geek-backend'
+        - 'zenadvisor-customer-backend'
+    steps:
+    - name: echo ${{ matrix.webAppName }}
+      run: echo ${{ matrix.webAppName }}
+    
+  

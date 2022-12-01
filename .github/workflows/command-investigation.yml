@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning' 
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+
+jobs:
+  investigation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: install dotnet-format
+        run: dotnet tool install -g dotnet-format
+      - name: echo dotnet format version  
+        run: dotnet-format --version
