@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     name: $ENV_NAME
     environment:
-      name: '${{ env.ENV_NAME }}'
+      name: ${{ env.ENV_NAME }}
     steps:
       - run: echo "hello $ENV_NAME"
