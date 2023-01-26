@@ -1,5 +1,9 @@
 name: sandbox workflow
-on: workflow_dispatch
+on: 
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  
 env:
   ENV_NAME: 'staging'
 
