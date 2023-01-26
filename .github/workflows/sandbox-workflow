@@ -3,7 +3,7 @@ on: workflow_dispatch
 
 jobs:
   job1:
-    name: job-1
+    runs-on: ubuntu-latest
     environment:
       name: staging
      steps:
