@@ -1,10 +1,13 @@
 name: sandbox workflow
 on: workflow_dispatch
+env:
+  ENV_NAME: 'staging'
+
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     environment:
-      name: staging
+      name: ${{ env.ENV_NAME }}
     steps:
       - run: echo "hello"
