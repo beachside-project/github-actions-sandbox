@@ -12,10 +12,12 @@ env:
 
 jobs:
   job1:
+    env:
+      ENV_IN_JOB: 'staging2'
     runs-on: ubuntu-latest
     name: 'job1: ${{ inputs.deployment_env }}'
     environment:
       # name: ${{ inputs.deployment_env }}
-      name: '${{ env.TARGET_ENV }}'
+      name: '${{ env.ENV_IN_JOB }}'
     steps:
       - run: echo "hello $TARGET_ENV"
