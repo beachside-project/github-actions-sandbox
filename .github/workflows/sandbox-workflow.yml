@@ -13,8 +13,8 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    name: 'job1: ${{ inputs.deployment_target }}'
+    name: 'job1: ${{ inputs.deployment_env }}'
     environment:
-      name: ${{ inputs.deployment_target }}
+      name: ${{ inputs.deployment_env }}
     steps:
       - run: echo "hello $ENV_NAME"
