@@ -1,7 +1,7 @@
 name: sandbox workflow
 on: workflow_dispatch
 env:
-  ENV_NAME: 'staging2'
+  ENV_NAME: 'staging'
 
 
 jobs:
