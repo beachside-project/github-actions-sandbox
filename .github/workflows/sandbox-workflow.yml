@@ -8,6 +8,6 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ env.ENV_NAME }}
+      name: staging
     steps:
-      - run: echo "hello"
+      - run: echo "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
