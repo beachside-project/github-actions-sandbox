@@ -11,4 +11,4 @@ jobs:
     environment:
       name: staging
     steps:
-      - run: echo "hello"
+      - run: echo "hello $ENV_NAME"
