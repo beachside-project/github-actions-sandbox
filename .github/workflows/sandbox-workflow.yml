@@ -7,8 +7,8 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    name: $ENV_NAME
+    name: '$ENV_NAME'
     environment:
-      name: staging
+      name: '${{ env.ENV_NAME }}'
     steps:
       - run: echo "hello $ENV_NAME"
