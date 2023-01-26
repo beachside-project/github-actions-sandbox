@@ -13,7 +13,7 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    name: $ENV_NAME
+    name: 'job1: ${{ inputs.deployment_target }}'
     environment:
       name: ${{ inputs.deployment_target }}
     steps:
