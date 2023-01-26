@@ -1,1 +1,10 @@
+name: sandbox workflow
+on: workflow_dispatch
 
+jobs:
+  job1:
+    name: job-1
+    environment:
+      name: staging
+     steps:
+     - run: echo "hello"
