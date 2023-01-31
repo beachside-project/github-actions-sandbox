@@ -9,7 +9,6 @@ on:
 env:
   TARGET_ENV: 'staging'
 
-
 jobs:
   job1:
     env:
@@ -21,3 +20,9 @@ jobs:
       name: '$TARGET_ENV'
     steps:
       - run: echo "hello $TARGET_ENV"
+      - name: 'via workflow_dispatch'
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo Hello workflow_dispatch
+      - name: 'via notworkflow_dispatch'
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: echo Hello NOT workflow_dispatch
