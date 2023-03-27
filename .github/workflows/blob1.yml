@@ -24,5 +24,5 @@ jobs:
     - name: Exec az storage blob command    
       run: |
         end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
-        az storage blob generate-sas --auth-mode login --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --https-only
-      
+        # az storage blob generate-sas --auth-mode login --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --https-only
+        az storage blob generate-sas --account-name styokosandbox -c test3 -n tsukihi.png --permissions r --expiry $end --https-only
