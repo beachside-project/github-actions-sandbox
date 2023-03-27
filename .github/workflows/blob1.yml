@@ -22,7 +22,7 @@ jobs:
         tenant-id: ${{ vars.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - name: Exec az storage blob command    
-    - run: |
+      run: |
         end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
         az storage blob generate-sas --auth-mode login --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --https-only
       
