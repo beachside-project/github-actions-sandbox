@@ -1,4 +1,4 @@
-name: blob sandbox workflow via access key
+name: blob sandbox via SP
 
 on:
   workflow_dispatch:
