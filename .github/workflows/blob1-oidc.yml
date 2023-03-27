@@ -1,4 +1,4 @@
-name: blob sandbox workflow
+name: blob sandbox via OIDC
 
 on:
   workflow_dispatch:
