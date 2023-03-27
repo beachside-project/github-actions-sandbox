@@ -6,6 +6,10 @@ on:
 permissions:
       id-token: write
       contents: read
+env:
+  ACCOUNT_NAME: styokosandbox
+  CONTAINER_NAME: test3
+  BLOB_NAME: tsukihi.png
 
 jobs:
   demo:
@@ -17,4 +21,7 @@ jobs:
         client-id: "bce0a6d6-b0ed-444e-9395-d11acae3a003"
         tenant-id: "1982bd18-2869-4bf4-aef9-ea424e027cba"
         subscription-id: "1b3190c4-138d-4ddf-8b9c-832ec58ddf2b"
+    - run: |
+        end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+        az storage blob generate-sas --account-name $ACCOUNT_NAME -c {{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --https-only
       
