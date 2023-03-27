@@ -16,11 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
+    - name: az login by SP
+      uses: azure/login@v1
+      with:
+          creds: ${{ secrets.AZURE_RG_BLOB_SANDBOX_SP }}  
     - name: Get SAS URL (full uri)
       id: BLOB1
       run: |
         end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
-        url=`az storage blob generate-sas --auth-mode login --as-user --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --full-uri --https-only`
+        url=`az storage blob generate-sas --auth-mode key --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --full-uri --https-only`
         # az storage blob generate-sas --account-key ${{ secrets.STYOKOSANDBOX_KEY }} --account-name styokosandbox -c test3 -n tsukihi.png --permissions r --expiry $end --full-uri --https-only
          echo "URL=$url" >> $GITHUB_OUTPUT
     - name: Echo url
