@@ -1,0 +1,28 @@
+name: blob sandbox workflow via access key
+
+on:
+  workflow_dispatch:
+
+permissions:
+      id-token: write
+      contents: read
+env:
+  ACCOUNT_NAME: styokosandbox
+  CONTAINER_NAME: test3
+  BLOB_NAME: tsukihi.png
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: Get SAS URL (full uri)
+      id: BLOB1
+      run: |
+        end=`date -u -d "30 minutes" '+%Y-%m-%dT%H:%MZ'`
+        url=`az storage blob generate-sas --auth-mode login --as-user --account-name $ACCOUNT_NAME -c ${{ env.CONTAINER_NAME }} -n $BLOB_NAME --permissions r --expiry $end --full-uri --https-only`
+        # az storage blob generate-sas --account-key ${{ secrets.STYOKOSANDBOX_KEY }} --account-name styokosandbox -c test3 -n tsukihi.png --permissions r --expiry $end --full-uri --https-only
+         echo "URL=$url" >> $GITHUB_OUTPUT
+    - name: Echo url
+      run: echo ${{ steps.BLOB1.outputs.URL }}
+        
