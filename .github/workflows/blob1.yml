@@ -8,11 +8,10 @@ permissions:
       contents: read
 
 jobs:
-  deployment:
+  demo:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-    - uses: actions/checkout@v3
     - uses: azure/login@v1
       with:
         client-id: "bce0a6d6-b0ed-444e-9395-d11acae3a003"
