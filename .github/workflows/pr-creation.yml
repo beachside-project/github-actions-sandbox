@@ -13,7 +13,8 @@ jobs:
       - run: echo ${{ github.event.inputs.branch }}
         name: checkout-branch
       # https://docs.github.com/ja/actions/using-workflows/using-github-cli-in-workflows
+      # https://cli.github.com/manual/gh_pr_create
       - name: echo
-        run: gh pr create --base main --title "Test from  action"
+        run: gh pr create --base main --title "Test from action" --body ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
