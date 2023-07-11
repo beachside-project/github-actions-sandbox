@@ -27,7 +27,7 @@ jobs:
         with:
           ref: main
       - name: to deady
-        run: gh pr ready https://github.com/beachside-project/github-actions-sandbox/pull/19
+        run: gh pr ready https://github.com/beachside-project/github-actions-sandbox/pull/20
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
