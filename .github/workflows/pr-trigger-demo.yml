@@ -34,5 +34,11 @@ jobs:
   echo_job:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
       - name: echo
-        run: echo "Hello, world!"
+        run: |
+          echo "workflow: ${{ github.workflow }}"
+          echo "event_name: ${{ github.event_name }}"
+          echo "ref_name: ${{ github.ref_name }}"
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "base_ref: ${{ github.base_ref }}"
