@@ -15,18 +15,31 @@ jobs:
       # https://docs.github.com/ja/actions/using-workflows/using-github-cli-in-workflows
       # https://cli.github.com/manual/gh_pr_create
       - name: echo
-        run: gh pr create --base main --title "Test from action" --body ""
+        run: gh pr create --base main --title "Test from action" --body "" --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  run_workflow:
+  ready_pr:
     needs: create_pr
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           ref: main
-      - name: run gh workflow run
-        run: gh workflow run pr-trigger-demo.yml -r pr-creation
+      - name: to deady
+        run: gh pr ready https://github.com/beachside-project/github-actions-sandbox/pull/20
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # これすれば動くけど、PR と紐づくわけではない          
+  # run_workflow:
+  #   needs: create_pr
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         ref: main
+  #     - name: run gh workflow run
+  #       run: gh workflow run pr-trigger-demo.yml -r pr-creation
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
