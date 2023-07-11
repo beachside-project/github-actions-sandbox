@@ -1,0 +1,19 @@
+name: PR creation
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: pr-creation
+      - run: echo ${{ github.event.inputs.branch }}
+        name: checkout-branch
+      # https://docs.github.com/ja/actions/using-workflows/using-github-cli-in-workflows
+      - name: echo
+        run: gh pr create --base main --title "Test from  action"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
