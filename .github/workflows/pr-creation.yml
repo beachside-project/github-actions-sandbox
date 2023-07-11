@@ -23,6 +23,9 @@ jobs:
     needs: create_pr
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
       - name: to deady
         run: gh pr ready main
         env:
