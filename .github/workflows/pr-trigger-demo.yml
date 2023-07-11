@@ -1,0 +1,22 @@
+name: PR trigger test
+
+on:
+  workflow_dispatch:
+  pull_request:
+    # synchronize：プルリクエストのブランチに新しいコミットがプッシュされたとき
+    types: [opened, synchronize]
+    branches:
+      - main
+    paths:
+      - "pr-trigger-target/*"
+
+permissions:
+  id-token: write
+  contents: read
+  
+jobs:
+  echo_job:
+    runs-on: windows-latest
+    steps:
+      - name: echo
+        run: echo "Hello, world!"

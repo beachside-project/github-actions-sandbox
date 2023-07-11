@@ -1,0 +1,20 @@
+name: paths-wildcard demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "wildcard-demo/*"
+
+permissions:
+  id-token: write
+  contents: read
+  
+jobs:
+  echo_job:
+    runs-on: windows-latest
+    steps:
+      - name: echo
+        run: echo "Hello, wildcard!"
