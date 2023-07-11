@@ -11,7 +11,6 @@ on:
       - unlabeled
       - opened
       - edited
-      - closed
       - reopened
       - synchronize
       - ready_for_review
@@ -21,6 +20,7 @@ on:
       - review_request_removed
       - labeled
       - unlabeled
+      # - closed
     branches:
       - main
     paths:

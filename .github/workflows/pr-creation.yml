@@ -18,3 +18,15 @@ jobs:
         run: gh pr create --base main --title "Test from action" --body ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  run_workflow:
+    needs: create_pr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: run gh workflow run
+        run: gh workflow run pr-trigger-demo.yml -r pr-creation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
