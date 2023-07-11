@@ -3,8 +3,24 @@ name: PR trigger test
 on:
   workflow_dispatch:
   pull_request:
-    # synchronize：プルリクエストのブランチに新しいコミットがプッシュされたとき
-    types: [opened, synchronize]
+    # types: [opened, synchronize]
+    types:
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - ready_for_review
+      - locked
+      - unlocked
+      - review_requested
+      - review_request_removed
+      - labeled
+      - unlabeled
     branches:
       - main
     paths:
