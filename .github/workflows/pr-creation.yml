@@ -23,6 +23,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  ready_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: to deady
+        run: gh pr ready main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # これすれば動くけど、PR と紐づくわけではない          
   # run_workflow:
   #   needs: create_pr
