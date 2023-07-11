@@ -24,6 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   ready_pr:
+    needs: create_pr
     runs-on: ubuntu-latest
     steps:
       - name: to deady
