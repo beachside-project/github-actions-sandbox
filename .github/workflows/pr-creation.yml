@@ -18,10 +18,6 @@ jobs:
         run: gh pr create --base main --title "Test from action" --body "" --draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: to deady
-        run: gh pr ready main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   ready_pr:
     needs: create_pr
