@@ -26,7 +26,7 @@ jobs:
       - name: echo
         run: gh pr create --base main --title "Test from action" --body ""
         env:
-          TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_TOKEN : ${{ steps.generate_token.outputs.token }}
 
 
   # これすれば GITHUB_TOKEN でも動くけど、PR と紐づくわけではない          
