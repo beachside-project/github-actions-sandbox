@@ -12,26 +12,24 @@ jobs:
           ref: pr-creation
       - run: echo ${{ github.event.inputs.branch }}
         name: checkout-branch
+      # この workflow でPR 作成後、別の PR trigger の worlflow が動作する
+      # workflow の起動には、GITHUB_TOKEN では権限が足りないため、GitHub Apps の token を使う (簡易になら PAT でも可)      
+      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow#authenticating-with-a-github-app
+      - name: generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.BEACHSIDE_WORKFLOW_APP1_APP_ID }}      
+          private_key: ${{ secrets.BEACHSIDE_WORKFLOW_APP1_PRIVATE_KEY }}
       # https://docs.github.com/ja/actions/using-workflows/using-github-cli-in-workflows
       # https://cli.github.com/manual/gh_pr_create
       - name: echo
-        run: gh pr create --base main --title "Test from action" --body "" --draft
+        run: gh pr create --base main --title "Test from action" --body ""
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ steps.generate_token.outputs.token }}
 
-  ready_pr:
-    needs: create_pr
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: main
-      - name: to deady
-        run: gh pr ready https://github.com/beachside-project/github-actions-sandbox/pull/20
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # これすれば動くけど、PR と紐づくわけではない          
+  # これすれば GITHUB_TOKEN でも動くけど、PR と紐づくわけではない          
   # run_workflow:
   #   needs: create_pr
   #   runs-on: ubuntu-latest
