@@ -51,7 +51,7 @@ jobs:
         id: download
         with:
           name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
-          path: artifacts
+          path: artifacts/${{ env.AZURE_FUNCTIONAPP_NAME }}
       - name: Echo download path for debug
         run: |
           echo download path is ${{steps.download.outputs.download-path}}
