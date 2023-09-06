@@ -19,7 +19,7 @@ namespace FunctionApp1
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string name = req.Query["name"] + ":v3";
+            string name = req.Query["name"] + ":v6";
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);

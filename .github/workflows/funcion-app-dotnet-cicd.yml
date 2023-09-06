@@ -1,20 +1,21 @@
 name: Azure Functions for dotnet CI/CD .
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - '.github/workflows/funcion-app-dotnet-cicd.yml'
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - '.github/workflows/funcion-app-dotnet-cicd.yml'
       
 defaults:
   run:
     shell: bash
      
 env:
-  DOTNET_VERSION: '3.1.x'
+  DOTNET_VERSION: '6.0.x'
   BUILD_CONFIGURATION: 'Release'
   FUNCTIONAPP_PACKAGE_PATH: 'function-app-sample/FunctionApp1'
-  AZURE_FUNCTIONAPP_NAME: 'func-github-action-sandbox-dotnet'
+  AZURE_FUNCTIONAPP_NAME: 'func-elle-sample1'
   
 jobs:
   build:
@@ -61,4 +62,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           package: artifacts/${{ env.AZURE_FUNCTIONAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_GITHUB_ACTION_SANDBOX_DOTNET }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FUNC_ELLE_SAMPLE1 }}
